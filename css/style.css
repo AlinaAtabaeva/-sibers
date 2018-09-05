@@ -1,0 +1,50 @@
+
+body {
+    background: linear-gradient(45deg, #EECFBA, #C5DDE8);
+    background: -moz-linear-gradient(45deg, #EECFBA, #C5DDE8);
+    background: -webkit-linear-gradient(45deg, #EECFBA, #C5DDE8);
+    background: -o-linear-gradient(45deg, #EECFBA, #C5DDE8);     
+    -moz-background-size: 100%; /* Firefox 3.6+ */
+    -webkit-background-size: 100%; /* Safari 3.1+ и Chrome 4.0+ */
+    -o-background-size: 100%; /* Opera 9.6+ */
+    background-size: 100%;                  
+    color: #888;
+    font: 300 18px/25px "Roboto", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.login{
+ border: 0px solid blue; 
+ position:relative;
+ top:100px; left:400px;
+  height:200px; width:300px;
+}
+.knopka {
+    color: #fff; /* цвет текста */
+    text-decoration: none; /* убирать подчёркивание у ссылок */
+    user-select: none; /* убирать выделение текста */
+    background: rgb(212,75,56); /* фон кнопки */
+    padding: .7em 1.5em; /* отступ от текста */
+    outline: none; /* убирать контур в Mozilla */
+    border: none;
+    margin-left: 10px;
+    margin-top: 10px;
+
+  } 
+.knopka:hover { background: rgb(232,95,76); } /* при наведении курсора мышки */
+.knopka:active { background: rgb(152,15,0); } /* при нажатии */
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
