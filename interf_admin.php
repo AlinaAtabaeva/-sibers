@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+<?php if(isset($_SESSION['admin'])){ ?> 
+ <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -8,7 +9,7 @@
 </head>
 <body>
 <?php
-//conneckt bd
+//connect bd
 include ('bd.php');
 //file with function 
 include ('users.php');?>
@@ -136,3 +137,9 @@ while($row = mysqli_fetch_array($result)){
 ?>
 </body>
 </html>
+<?php
+}else{
+    echo "<font color='red'> You are not an administrator.</font><br/>";
+}
+ ?>
+

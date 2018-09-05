@@ -1,3 +1,4 @@
+<?php if(isset($_SESSION['admin'])){ ?> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,3 +63,8 @@ while($row = mysqli_fetch_array($result)){
 ?>
 </body>
 </html>
+<?php
+}else{
+    echo "<font color='red'> You are not an administrator.</font><br/>";
+}
+ ?>
