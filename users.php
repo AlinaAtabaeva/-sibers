@@ -11,19 +11,78 @@ class Users {
         $gender = $_POST['gender'];
         $birth_date = $_POST['birth_date'];
         $role = 0;
-        if(empty($login) || empty($password) || empty($first_name) || empty($last_name) || empty($birth_date) ) {                
-
-                echo "<font color='red'> не все поля заполнены.</font><br/>";
-
-        } else { 
+        $err=0;
+        if (empty($_POST["login"])) {
+            echo "<font color='red'> Login is required.</font><br/>";
+            $err++;
+          } else {
+            $login = trim($login);
+            $login = stripslashes($login);
+            $login = htmlspecialchars($login);
+            // check if login only contains letters and whitespace
+            if (!preg_match("/^[a-zA-Z ]*$/",$login)) {
+                echo "<font color='red'> Only letters and white space allowed.</font><br/>";
+                $err++;    
+            }
+          }
+          if (empty($_POST["password"])) {
+            echo "<font color='red'> Password is required.</font><br/>";
+            $err++;
+          } else {
+              // check if password have least 8 characters
+            if (strlen($_POST["password"]) <= '8') {
+                echo "<font color='red'> Your Password Must Contain At Least 8 Characters!</font><br/>";
+                $err++;  
+            }
+            // check if password have least 1 number
+            elseif(!preg_match("#[0-9]+#",$password)) {
+                echo "<font color='red'> Your Password Must Contain At Least 1 Number!!</font><br/>";  
+                $err++;
+            }
+          }
+          if (empty($_POST["first_name"])) {
+            echo "<font color='red'> First name is required.</font><br/>";
+            $err++;
+          } else {
+            $first_name = trim($first_name);
+            $first_name = stripslashes($first_name);
+            $first_name = htmlspecialchars($first_name);
+            if (!preg_match("/^[a-zA-Z ]*$/",$first_name)) {
+                echo "<font color='red'> Only letters and white space allowed.</font><br/>";    
+                $err++;
+            }
+          }
+          if (empty($_POST["last_name"])) {
+            echo "<font color='red'>Last name is required.</font><br/>";
+            $err++;
+          } else {
+            $last_name = trim($last_name);
+            $last_name = stripslashes($last_name);
+            $last_name = htmlspecialchars($last_name);
+            if (!preg_match("/^[a-zA-Z ]*$/",$last_name)) {
+                echo "<font color='red'> Only letters and white space allowed.</font><br/>";  
+                $err++;  
+            }
+          }
+          if (empty($_POST["birth_date"])) {
+            echo "<font color='red'>Date is required.</font><br/>";
+            $err++;
+          } else {
+            if ($_POST['birth_date'] > date("Y-m-d")) {
+                echo "<font color='red'> Only the past date.</font><br/>"; 
+                $err++;   
+            }
+          }
+          if($err==0) {
             include ('bd.php');
             $query = "INSERT INTO users (login,password,first_name,last_name,gender,birth_date,role) VALUES ('$login','$password','$first_name','$last_name','$gender','$birth_date','$role');"; 
             $result = mysqli_query($dbcon, $query);
             header("Location:interf_admin.php?page=1");  
+          }
         }
       
-    }
- }
+}
+
 
  function read() {
     $id_user=(int)$_POST['id_user'];
@@ -69,28 +128,84 @@ class Users {
  }
 
  function Update() {    
-    if(isset($_POST['Submit'])) { 
-     $id_user=(int)$_POST['id_user']; 
-    $login = $_POST['login'];
-    $password = $_POST['password'];
-    $first_name = $_POST['first_name'];
-    $last_name = $_POST['last_name'];
-    $gender = $_POST['gender'];
-    $birth_date = $_POST['birth_date'];
-    $role = 0;
-    if(empty($login) || empty($password) || empty($first_name) || empty($last_name) || empty($birth_date) ) {                
-
-            echo "<font color='red'> не все поля заполнены.</font><br/>";
-
-    } else { 
-        include ('bd.php');
-        $query = "UPDATE users SET login = '$login',password = '$password',first_name = '$first_name',last_name = '$last_name',gender = '$gender',birth_date = '$birth_date' WHERE id_user='$id_user';"; 
-
-        $result = mysqli_query($dbcon, $query);
-        header("Location:interf_admin.php?page=1"); 
-    }
-  
-}
+    if(isset($_POST['Submit'])) {    
+        $id_user=(int)$_POST['id_user']; 
+        $login = $_POST['login'];
+        $password = $_POST['password'];
+        $first_name = $_POST['first_name'];
+        $last_name = $_POST['last_name'];
+        $gender = $_POST['gender'];
+        $birth_date = $_POST['birth_date'];
+        $role = 0;
+        $err=0;
+        if (empty($_POST["login"])) {
+            echo "<font color='red'> Login is required.</font><br/>";
+            $err++;
+          } else {
+            $login = trim($login);
+            $login = stripslashes($login);
+            $login = htmlspecialchars($login);
+            // check if login only contains letters and whitespace
+            if (!preg_match("/^[a-zA-Z ]*$/",$login)) {
+                echo "<font color='red'> Only letters and white space allowed.</font><br/>";
+                $err++;    
+            }
+          }
+          if (empty($_POST["password"])) {
+            echo "<font color='red'> Password is required.</font><br/>";
+            $err++;
+          } else {
+              // check if password have least 8 characters
+            if (strlen($_POST["password"]) <= '8') {
+                echo "<font color='red'> Your Password Must Contain At Least 8 Characters!</font><br/>";
+                $err++;  
+            }
+            // check if password have least 1 number
+            elseif(!preg_match("#[0-9]+#",$password)) {
+                echo "<font color='red'> Your Password Must Contain At Least 1 Number!!</font><br/>";  
+                $err++;
+            }
+          }
+          if (empty($_POST["first_name"])) {
+            echo "<font color='red'> First name is required.</font><br/>";
+            $err++;
+          } else {
+            $first_name = trim($first_name);
+            $first_name = stripslashes($first_name);
+            $first_name = htmlspecialchars($first_name);
+            if (!preg_match("/^[a-zA-Z ]*$/",$first_name)) {
+                echo "<font color='red'> Only letters and white space allowed.</font><br/>";    
+                $err++;
+            }
+          }
+          if (empty($_POST["last_name"])) {
+            echo "<font color='red'>Last name is required.</font><br/>";
+            $err++;
+          } else {
+            $last_name = trim($last_name);
+            $last_name = stripslashes($last_name);
+            $last_name = htmlspecialchars($last_name);
+            if (!preg_match("/^[a-zA-Z ]*$/",$last_name)) {
+                echo "<font color='red'> Only letters and white space allowed.</font><br/>";  
+                $err++;  
+            }
+          }
+          if (empty($_POST["birth_date"])) {
+            echo "<font color='red'>Date is required.</font><br/>";
+            $err++;
+          } else {
+            if ($_POST['birth_date'] > date("Y-m-d")) {
+                echo "<font color='red'> Only the past date.</font><br/>"; 
+                $err++;   
+            }
+          }
+          if($err==0) {
+            include ('bd.php');
+            $query = "UPDATE users SET login = '$login',password = '$password',first_name = '$first_name',last_name = '$last_name',gender = '$gender',birth_date = '$birth_date' WHERE id_user='$id_user';";
+            $result = mysqli_query($dbcon, $query);
+            header("Location:interf_admin.php?page=1");  
+          }
+        }
 }
 
  function Delete() {

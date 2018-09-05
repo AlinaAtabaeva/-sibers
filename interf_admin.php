@@ -8,8 +8,11 @@
 </head>
 <body>
 <?php
+//conneckt bd
 include ('bd.php');
+//file with function 
 include ('users.php');?>
+<!--button exit and create new user-->
 <form action="logout.php">
     <input class="knopka" type="submit" value="Exit"/>
 </form>
@@ -18,7 +21,7 @@ include ('users.php');?>
 </form>
 
 <?php
- 
+ //Variable for pagination  
 if(isset($_GET['page'])){
     $page = $_GET['page'];
 }else{
@@ -27,6 +30,7 @@ if(isset($_GET['page'])){
 
 $user = new Users;
 $sort =1;
+
 if (isset($_POST['show'])) {
     $user->read();
   }
@@ -46,14 +50,11 @@ $query = "SELECT COUNT(*) FROM users";
 $result = mysqli_query($dbcon, $query);
 $posts = mysqli_fetch_row($result); 
 
-// Находим общее число страниц 
+// Find the total number of pages
 $total = intval(((int)$posts[0] - 1) / $num) + 1; 
 
-// Определяем начало сообщений для текущей страницы 
+//Define the beginning of messages for the current page
 $page = intval($page); 
-// Если значение $page меньше единицы или отрицательно 
-// переходим на первую страницу 
-// А если слишком большое, то переходим на последнюю 
 
 if(empty($page) || $page < 0){ 
     $page = 1; 
@@ -61,10 +62,9 @@ if(empty($page) || $page < 0){
   if($page > $total) {
     $page = $total; 
   }
-// Вычисляем начиная к какого номера 
-// следует выводить сообщения 
+// We calculate starting to which number should output messages
 $start = $page * $num - $num; 
-// Выбираем $num сообщений начиная с номера $start
+// if $sort==1 ORDER BY Acs if $sort==2 ORDER BY Desc
 if ($sort==1) {
     $result = mysqli_query($dbcon,"SELECT * FROM users  ORDER BY login LIMIT $start, $num"); 
 }else if($sort==2){
@@ -78,7 +78,7 @@ if ($sort==1){
 }
 echo "<input class='knopka' type='submit' name='' value='Sort' />";
 echo "</form> ";
-// В цикле переносим результаты запроса в массив $postrow 
+// output to the table
 $table = "<table>";
     $table .= "<tr>";
     $table .= "<td>Users</td>";
@@ -101,21 +101,21 @@ while($row = mysqli_fetch_array($result)){
     $table .= "</table> ";
     echo $table;
 
-    // Проверяем нужны ли стрелки назад 
+    // button back
     if ($page != 1) $pervpage = '<a href= ./interf_admin.php?page=1><<</a> 
                                    <a href= ./interf_admin.php?page='. ($page - 1) .'><</a> '; 
                                    
-    // Проверяем нужны ли стрелки вперед 
+    // button next
     if ($page != $total) $nextpage = ' <a href= ./interf_admin.php?page='. ($page + 1) .'>></a> 
                                        <a href= ./interf_admin.php?page=' .$total. '>>></a>'; 
 
-    // Находим две ближайшие станицы с обоих краев, если они есть 
+    // We find the two nearest stanitsas from both edges, if they exist
     if($page - 2 > 0) $page2left = ' <a href= ./interf_admin.php?page='. ($page - 2) .'>'. ($page - 2) .'</a> | '; 
     if($page - 1 > 0) $page1left = '<a href= ./interf_admin.php?page='. ($page - 1) .'>'. ($page - 1) .'</a> | '; 
     if($page + 2 <= $total) $page2right = ' | <a href= ./interf_admin.php?page='. ($page + 2) .'>'. ($page + 2) .'</a>'; 
     if($page + 1 <= $total) $page1right = ' | <a href= ./interf_admin.php?page='. ($page + 1) .'>'. ($page + 1) .'</a>'; 
 
-    // Вывод меню 
+    // pagination button
     $table = "<table>";
     $table .= "<tr>";
     $table .= "<td>";
@@ -136,7 +136,3 @@ while($row = mysqli_fetch_array($result)){
 ?>
 </body>
 </html>
-
-<script>
-
-</script>
