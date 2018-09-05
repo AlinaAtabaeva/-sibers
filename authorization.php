@@ -42,7 +42,7 @@ setlocale(LC_ALL,"US");
         if($myrow["role"]== 1){//is user admin
             $_SESSION['login']=$myrow["login"]; 
             $_SESSION['id_user']=$myrow["id_user"];
-            $_SESSION['admin'] == 'on';
+            $_SESSION['admin'] = 'on';
             header("Location:interf_admin.php?page=1"); 
         }else{
             echo "<font color='red'> You are not an administrator.</font><br/>";
