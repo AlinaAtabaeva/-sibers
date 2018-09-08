@@ -1,4 +1,6 @@
-<?php if(isset($_SESSION['admin'])){ ?> 
+<?php
+  session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,11 +13,13 @@
 <?php
 include ('bd.php');
 include ('users.php');
-if(isset($_POST["login"]))
-{
-    $user = new Users;
-    $user->create();
-}
+if(isset($_SESSION['role'])){
+    if($_SESSION['role']==1){
+        if(isset($_POST["login"]))
+        {
+            $user = new Users;
+            $user->create();
+        }
 
 ?>
 <form action="" method="post" name="form1">
@@ -51,10 +55,11 @@ if(isset($_POST["login"]))
             </tr>
         </table>
     </form>
+<?php
+}   
+}else{
+    echo "You do not have permission to access";
+}
+?>
 </body>
 </html>
-<?php
-}else{
-    echo "<font color='red'> You are not an administrator.</font><br/>";
-}
- ?>

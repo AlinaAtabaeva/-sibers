@@ -1,4 +1,6 @@
-<?php if(isset($_SESSION['admin'])){ ?> 
+<?php
+  session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,11 +13,13 @@
 <?php
 include ('bd.php');
 include ('users.php');
-if(isset($_POST["login"]))
-{
-    $user = new Users;
-    $user->update();
-}
+if(isset($_SESSION['role'])){
+    if($_SESSION['role']=='1'){
+        if(isset($_POST["login"]))
+        {
+            $user = new Users;
+            $user->update();
+        }
 $id_user=(int)$_POST['id_user'];
 $query = "SELECT * FROM users WHERE id_user=".$id_user;
 $result = mysqli_query($dbcon, $query);
@@ -60,11 +64,10 @@ while($row = mysqli_fetch_array($result)){
     $table .= "</table> ";
     $table .= "</form> ";
     echo $table;
+}   
+}else{
+    echo "You do not have permission to access";
+}
 ?>
 </body>
 </html>
-<?php
-}else{
-    echo "<font color='red'> You are not an administrator.</font><br/>";
-}
- ?>

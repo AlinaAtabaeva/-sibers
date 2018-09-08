@@ -12,8 +12,6 @@
 </head>
 <body>
 <?php
-$Err='';
-
 // if we are't already logged 
     if (empty($_SESSION['login']) or empty($_SESSION['id_user']))
     {
@@ -26,7 +24,6 @@ $Err='';
   <input name="login" type="text" size="15" maxlength="15"><br/>
     <label>Password:</label><br/>
   <input name="password" type="password" size="15" maxlength="15"><br/><br/>
-  <span class="error"><?php echo $Err;?></span>
   <input  class="knopka" type="submit" value="Enter"><br/><br/>
 </form>
 </div>

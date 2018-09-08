@@ -39,10 +39,10 @@ setlocale(LC_ALL,"US");
     else {
     //if exist compare login and pasword
     if ($myrow["password"]==$password) {
-        if($myrow["role"]== 1){//is user admin
+        if($myrow["role"]== 1){//if user admin
             $_SESSION['login']=$myrow["login"]; 
             $_SESSION['id_user']=$myrow["id_user"];
-            $_SESSION['admin'] = 'on';
+            $_SESSION['role']=$myrow["role"];
             header("Location:interf_admin.php?page=1"); 
         }else{
             echo "<font color='red'> You are not an administrator.</font><br/>";

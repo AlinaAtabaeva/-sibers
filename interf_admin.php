@@ -1,5 +1,7 @@
-<?php if(isset($_SESSION['admin'])){ ?> 
- <!DOCTYPE html>
+<?php
+  session_start();
+?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -9,6 +11,8 @@
 </head>
 <body>
 <?php
+if(isset($_SESSION['role'])){
+    if($_SESSION['role']=='1'){
 //connect bd
 include ('bd.php');
 //file with function 
@@ -84,7 +88,7 @@ $table = "<table>";
     $table .= "<tr>";
     $table .= "<td>Users</td>";
     $table .= "</tr>";
-while($row = mysqli_fetch_array($result)){
+    while($row = mysqli_fetch_array($result)){
     $table .= "<tr>";
     $table .= "<form action='' method='post'>"; 
     $table .= "<input type='hidden' name='id_user' value = " .$row['id_user'] .">";
@@ -132,14 +136,12 @@ while($row = mysqli_fetch_array($result)){
     $table .= "</table> ";
     if ($total!=1){
         echo $table;
-    }
-    
+        }
+    }   
+}else{
+    echo "You do not have permission to access";
+}
 ?>
 </body>
 </html>
-<?php
-}else{
-    echo "<font color='red'> You are not an administrator.</font><br/>";
-}
- ?>
 
