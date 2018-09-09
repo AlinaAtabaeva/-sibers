@@ -91,9 +91,11 @@ if(isset($_SESSION['role'])){
         </table>
     </form>
 <?php
-}   
 }else{
-    echo "You do not have permission to access";
+    header("Location:index.php");
+}
+}else{
+    header("Location:index.php");
 }
 ?>
 </body>

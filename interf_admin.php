@@ -169,9 +169,11 @@ $table = "<table>";
         if (isset($nextpage))echo '<li>'.$nextpage.'</li>';
         echo '</ul>';
     }
-}   
 }else{
-        echo "You do not have permission to access";
+    header("Location:index.php");
+}
+}else{
+    header("Location:index.php");
      }
 ?>
 </body>

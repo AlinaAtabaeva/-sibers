@@ -99,9 +99,11 @@ while($row = mysqli_fetch_array($result)){
     $table .= "</table> ";
     $table .= "</form> ";
     echo $table;
-}   
+} else{
+    header("Location:index.php");
+}
 }else{
-    echo "You do not have permission to access";
+    header("Location:index.php");
 }
 ?>
 </body>
