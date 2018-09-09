@@ -1,7 +1,7 @@
 # -sibers
 Web inteface DB  registered site users
 =====================
-Connect BD
+Connect DB
 -----------------------------------
 In file **db.php** is written to connect to the database <br>
     $dbcon = mysqli_connect("localhost", "root", ""); <br>
