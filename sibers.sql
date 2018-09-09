@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Сен 05 2018 г., 14:16
+-- Время создания: Сен 09 2018 г., 14:01
 -- Версия сервера: 10.1.28-MariaDB
 -- Версия PHP: 7.1.11
 
@@ -46,11 +46,11 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id_user`, `login`, `password`, `first_name`, `last_name`, `gender`, `birth_date`, `role`) VALUES
 (1, 'admin', '373440', 'Alina', 'Atabaeva', 'F', '1995-03-07', 1),
 (32, 'ivan', '123456789', 'ivan', 'ivanov', 'M', '2018-09-03', 0),
-(33, 'user1', '123456789', 'Ivan', 'Ivanov', 'M', '1992-09-21', 0),
-(34, 'user2', '95475221dd', 'Piter', 'Smit', 'M', '1995-09-09', 0),
-(35, 'user3', '68656565ddsdsa', 'Sara', 'Kim', 'F', '1997-01-01', 0),
-(36, 'user4', '65654saldjkl', 'Marina', 'Frans', 'F', '1964-05-02', 0),
-(37, 'user5', 'fsdfsdafsdfa', 'Tom', 'Cruz', 'M', '1955-09-10', 0);
+(35, 'userThree', '68656565ddsdsa', 'Sara', 'Kim', 'F', '1997-01-01', 0),
+(37, 'userFive', 'fsdfsdafsdfa1', 'Tom', 'Cruz', 'M', '1955-09-10', 0),
+(38, 'fdgdfgdfg', '12345678g', 'sad', 'sdfgf', 'F', '2018-09-03', 0),
+(48, 'Kame', '23021986a', 'Kazuy', 'Kamenashi', 'M', '1986-02-23', 0),
+(51, 'Baka', '123456789', 'Akanishi', 'Jin', 'M', '2018-02-13', 0);
 
 --
 -- Индексы сохранённых таблиц
@@ -71,7 +71,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id_user` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
