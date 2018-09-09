@@ -11,14 +11,39 @@
 </head>
 <body>
 <?php
+$Errlogin=$Errpassword=$Errfirst_name= $Errlast_name= $Errbirth_date =$ok= "";
 include ('bd.php');
 include ('users.php');
 if(isset($_SESSION['role'])){
     if($_SESSION['role']==1){
-        if(isset($_POST["login"]))
+        if(isset($_POST["add"]))
         {
             $user = new Users;
             $user->create();
+            if(isset($user->error)){
+                if(isset($user->error['ok'])){
+                    $ok  =$user->error['ok'];
+                }
+                if(isset($user->error['login'])){
+                    $Errlogin =$user->error['login'];
+                }
+                if(isset($user->error['password'])){
+                    $Errpassword =$user->error['password'];
+                }
+                if(isset($user->error['first_name'])){
+                    $Errfirst_name =$user->error['first_name'];
+                }
+                if(isset($user->error['last_name'])){
+                    $Errlast_name =$user->error['last_name'];
+                }
+                if(isset($user->error['birth_date'])){
+                    $Errbirth_date  =$user->error['birth_date'];
+                }
+            }
+        }
+        if(isset($_POST["back"]))
+        {
+            header("Location:interf_admin.php?page=1"); 
         }
 
 ?>
@@ -26,19 +51,23 @@ if(isset($_SESSION['role'])){
         <table width="25%" border="0">
             <tr> 
                 <td>Login</td>
-                <td><input type="text" name="login"></td>
+                <td><input type="text" name="login">
+                <span class="error">* <?php echo $Errlogin;?></span></td>
             </tr>
             <tr> 
                 <td>Password</td>
-                <td><input type="password" name="password"></td>
+                <td><input type="password" name="password">
+                <span class="error">* <?php echo $Errpassword;?></span></td>
             </tr>
             <tr> 
                 <td>First name</td>
-                <td><input type="text" name="first_name"></td>
+                <td><input type="text" name="first_name">
+                <span class="error">* <?php echo $Errfirst_name;?></span></td>
             </tr>
             <tr> 
                 <td>Last name</td>
-                <td><input type="text" name="last_name"></td>
+                <td><input type="text" name="last_name">
+                <span class="error">* <?php echo $Errlast_name;?></span></td>
             </tr>
             <tr> 
                 <td>Gender</td>
@@ -47,11 +76,17 @@ if(isset($_SESSION['role'])){
             </tr>
             <tr> 
                 <td>Date of birh</td>
-                <td><input type="date" name="birth_date" /></td>
+                <td><input type="date" name="birth_date" />
+                <span class="error">* <?php echo $Errbirth_date;?></span></td>
             </tr>
             <tr> 
                 <td></td>
-                <td><input class='knopka' type="submit" name="Submit" value="Add"></td>
+                <td><span class="sucsess"><?php echo $ok;?></span></td>
+            </tr>
+            <tr> 
+                <td></td>
+                <td><input class='knopka' type="submit" name="add" value="Add">
+                <input class='knopka' type="submit" name="back" value="Back"></td>
             </tr>
         </table>
     </form>

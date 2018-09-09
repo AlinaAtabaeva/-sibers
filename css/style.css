@@ -34,7 +34,7 @@ body {
 
 table {
     border-collapse: collapse;
-    width: 100%;
+    width: 70%;
 }
 
 th, td {
@@ -48,3 +48,44 @@ th {
     background-color: #4CAF50;
     color: white;
 }
+.error{
+    color: #FF0000;
+}
+.sucsess{
+    color: #4CAF50;
+}
+.butSort{
+    margin: 80px -166px 10px 10px;
+    float: right;
+    border: 1px solid black;
+    padding: 10px;
+}
+.butMen{
+    float: right;
+    display: -webkit-box;
+    margin-right: 14px;
+}
+ul.pagination {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+
+ul.pagination li {display: inline;}
+
+ul.pagination li a {
+    color: black;
+    float: left;
+    padding: 4px 8px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+}
+
+ul.pagination li a.active {
+    background-color: #4CAF50;
+    color: white;
+    border: 1px solid #4CAF50;
+}
+
+ul.pagination li a:hover:not(.active) {background-color: #ddd;}

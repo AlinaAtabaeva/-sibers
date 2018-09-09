@@ -12,6 +12,14 @@
 </head>
 <body>
 <?php
+if(isset($_POST["enter"])){
+    session_destroy();
+}
+if(isset($_SESSION['error'])){
+    $Error=$_SESSION['error'];
+}else{
+    $Error="";
+}
 // if we are't already logged 
     if (empty($_SESSION['login']) or empty($_SESSION['id_user']))
     {
@@ -24,7 +32,8 @@
   <input name="login" type="text" size="15" maxlength="15"><br/>
     <label>Password:</label><br/>
   <input name="password" type="password" size="15" maxlength="15"><br/><br/>
-  <input  class="knopka" type="submit" value="Enter"><br/><br/>
+  <span class="error"><?php echo $Error;?></span><br>
+  <input  class="knopka" type="submit" name ="enter"value="Enter"><br/><br/>
 </form>
 </div>
 <?php
